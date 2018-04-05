@@ -78,6 +78,16 @@
 
 
 
+<script>
+    (function(){
+        if('test'){
+            if (prompt('请输入文章密码') !== 'test'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <meta name="description" content="Hello Test">
 <meta name="keywords" content="标签">
