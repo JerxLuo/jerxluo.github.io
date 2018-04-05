@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JVM," />
 
 
 
@@ -104,17 +104,21 @@
     })();
 </script>
 
-<meta name="description" content="知识分享">
-<meta name="keywords" content="keywords">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jerx Luo 的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="垃圾收集器与内存分配策略1.职能： 垃圾收集器的职能就是将堆中的”已死去“的对象进行回收。 那么在对堆进行回收前，必须先判断对象是否还活着  如果由于代码设计不合理可能会导致一些无用的对象仍然被判定为存活着而导致内存泄漏 2.对象死活 2.1.引用计数 优点：效率高，实现简单 缺点：很难解决对象之间相互循环引用的问题(这也是虚拟机不选用该算法来管理内存的原因) http://blog.csdn.n">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="垃圾收集器与内存分配策略">
+<meta property="og:url" content="http://yoursite.com/2018/04/05/JVM/垃圾收集器与内存分配策略/index.html">
 <meta property="og:site_name" content="Jerx Luo 的博客">
-<meta property="og:description" content="知识分享">
+<meta property="og:description" content="垃圾收集器与内存分配策略1.职能： 垃圾收集器的职能就是将堆中的”已死去“的对象进行回收。 那么在对堆进行回收前，必须先判断对象是否还活着  如果由于代码设计不合理可能会导致一些无用的对象仍然被判定为存活着而导致内存泄漏 2.对象死活 2.1.引用计数 优点：效率高，实现简单 缺点：很难解决对象之间相互循环引用的问题(这也是虚拟机不选用该算法来管理内存的原因) http://blog.csdn.n">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:/Users/jerxluo/AppData/Local/Temp/WeChat%20Files/9ef426cad90d0eeeac43e59e3280368.png">
+<meta property="og:image" content="c:/Users/jerxluo/AppData/Local/Temp/WeChat%20Files/b914e74433c71da8c0f87dcfba313ae.png">
+<meta property="og:updated_time" content="2018-04-04T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jerx Luo 的博客">
-<meta name="twitter:description" content="知识分享">
+<meta name="twitter:title" content="垃圾收集器与内存分配策略">
+<meta name="twitter:description" content="垃圾收集器与内存分配策略1.职能： 垃圾收集器的职能就是将堆中的”已死去“的对象进行回收。 那么在对堆进行回收前，必须先判断对象是否还活着  如果由于代码设计不合理可能会导致一些无用的对象仍然被判定为存活着而导致内存泄漏 2.对象死活 2.1.引用计数 优点：效率高，实现简单 缺点：很难解决对象之间相互循环引用的问题(这也是虚拟机不选用该算法来管理内存的原因) http://blog.csdn.n">
+<meta name="twitter:image" content="c:/Users/jerxluo/AppData/Local/Temp/WeChat%20Files/9ef426cad90d0eeeac43e59e3280368.png">
 
 
 
@@ -144,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/05/JVM/垃圾收集器与内存分配策略/"/>
 
 
 
 
 
-  <title>Jerx Luo 的博客</title>
+  <title>垃圾收集器与内存分配策略 | Jerx Luo 的博客</title>
   
 
 
@@ -169,8 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -243,9 +246,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -275,9 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/05/JVM/垃圾收集器与内存分配策略/" itemprop="url">垃圾收集器与内存分配策略</a></h1>
+          <h1 class="post-title" itemprop="name headline">垃圾收集器与内存分配策略</h1>
         
 
         <div class="post-meta">
@@ -327,9 +328,7 @@
       
 
       
-        
-          
-            <h1 id="垃圾收集器与内存分配策略"><a href="#垃圾收集器与内存分配策略" class="headerlink" title="垃圾收集器与内存分配策略"></a>垃圾收集器与内存分配策略</h1><h2 id="1-职能："><a href="#1-职能：" class="headerlink" title="1.职能："></a>1.职能：</h2><p> 垃圾收集器的职能就是将堆中的”已死去“的对象进行回收。<br> 那么在对堆进行回收前，必须先判断对象是否还活着</p>
+        <h1 id="垃圾收集器与内存分配策略"><a href="#垃圾收集器与内存分配策略" class="headerlink" title="垃圾收集器与内存分配策略"></a>垃圾收集器与内存分配策略</h1><h2 id="1-职能："><a href="#1-职能：" class="headerlink" title="1.职能："></a>1.职能：</h2><p> 垃圾收集器的职能就是将堆中的”已死去“的对象进行回收。<br> 那么在对堆进行回收前，必须先判断对象是否还活着</p>
 <p> 如果由于代码设计不合理可能会导致一些无用的对象仍然被判定为存活着而导致内存泄漏</p>
 <h2 id="2-对象死活"><a href="#2-对象死活" class="headerlink" title="2.对象死活"></a>2.对象死活</h2><p><img src="C:\Users\jerxluo\AppData\Local\Temp\WeChat Files\9ef426cad90d0eeeac43e59e3280368.png" alt="9ef426cad90d0eeeac43e59e3280368"></p>
 <h3 id="2-1-引用计数"><a href="#2-1-引用计数" class="headerlink" title="2.1.引用计数"></a>2.1.引用计数</h3><p> 优点：效率高，实现简单<br> 缺点：很难解决对象之间相互循环引用的问题(这也是虚拟机不选用该算法来管理内存的原因)<br> <a href="http://blog.csdn.net/u013613428/article/details/53763925" target="_blank" rel="noopener">http://blog.csdn.net/u013613428/article/details/53763925</a><br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * VM args :</span></span><br><span class="line"><span class="comment"> * -XX:+PrintGC 输出GC日志</span></span><br><span class="line"><span class="comment"> * -XX:+PrintGCDetails 输出GC的详细日志</span></span><br><span class="line"><span class="comment"> * -XX:+PrintGCTimeStamps 输出GC的时间戳（以基准时间的形式）</span></span><br><span class="line"><span class="comment"> * -XX:+PrintGCDateStamps 输出GC的时间戳（以日期的形式，如 2013-05-04T21:53:59.234+0800）</span></span><br><span class="line"><span class="comment"> * -XX:+PrintHeapAtGC 在进行GC的前后打印出堆的信息</span></span><br><span class="line"><span class="comment"> * -Xloggc:../logs/gc.log 日志文件的输出路径</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>: jerx</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: Created in 15:08 2018/2/2</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceCountingGC</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Object instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> _1MB=<span class="number">1024</span>*<span class="number">1024</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">byte</span>[] bigSize = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span>*_1MB];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testGC</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ReferenceCountingGC objA = <span class="keyword">new</span> ReferenceCountingGC();</span><br><span class="line">        ReferenceCountingGC objB = <span class="keyword">new</span> ReferenceCountingGC();</span><br><span class="line">        objA.instance = objB;</span><br><span class="line">        objB.instance = objA;</span><br><span class="line">        System.gc();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ReferenceCountingGC.testGC();</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>*<span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -413,8 +412,6 @@
 </ul>
 <p>​    </p>
 
-          
-        
       
     </div>
     
@@ -422,6 +419,10 @@
     
 
 	
+		<div>
+    
+    	</div>
+    
     
     
 
@@ -431,14 +432,20 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"> <i class="fa fa-tag"></i> JVM</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -448,10 +455,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -459,6 +467,12 @@
 
 
           
+
+  
+  
+
+
+
         </div>
         
           
@@ -478,8 +492,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -539,6 +562,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#垃圾收集器与内存分配策略"><span class="nav-number">1.</span> <span class="nav-text">垃圾收集器与内存分配策略</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-职能："><span class="nav-number">1.1.</span> <span class="nav-text">1.职能：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-对象死活"><span class="nav-number">1.2.</span> <span class="nav-text">2.对象死活</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-引用计数"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1.引用计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-可达性分析"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2.可达性分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-细分引用"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3.细分引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-死前挣扎"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4.死前挣扎</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析："><span class="nav-number">1.2.4.1.</span> <span class="nav-text">分析：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-回收方法区"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5.回收方法区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-回收内容："><span class="nav-number">1.2.5.1.</span> <span class="nav-text">2.5.1.回收内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-2-回收废弃常量条件："><span class="nav-number">1.2.5.2.</span> <span class="nav-text">2.5.2.回收废弃常量条件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-3-可能回收类的条件"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">2.5.3.可能回收类的条件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-垃圾收集算法"><span class="nav-number">1.3.</span> <span class="nav-text">3.垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-标记-清除算法"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1.标记-清除算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-复制算法"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2.复制算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-标记-整理算法"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3.标记-整理算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-分代收集算法"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4.分代收集算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-算法实现"><span class="nav-number">1.4.</span> <span class="nav-text">4.算法实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-枚举根节点-GC-Roots"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1.枚举根节点 GC Roots</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安全点"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">安全点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全区域"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">安全区域</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -674,6 +713,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
