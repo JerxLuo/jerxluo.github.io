@@ -19,4 +19,15 @@
         <tag>标签A</tag>
       </tags>
   </entry>
+  <entry>
+    <title><![CDATA[test]]></title>
+    <url>%2F2018%2F04%2F05%2FtestFinally%2F</url>
+    <content type="text"><![CDATA[JVM]]></content>
+      <categories>
+        <category>JVM</category>
+      </categories>
+      <tags>
+        <tag>标签A</tag>
+      </tags>
+  </entry>
 </search>
