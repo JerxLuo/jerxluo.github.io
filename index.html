@@ -451,6 +451,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/leetcode/leetcode-870/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jerx Luo">
+      <meta itemprop="description" content="知识分享">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerx Luo 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/19/leetcode/leetcode-870/" itemprop="url">
+                  leetcode 870 - 优势洗牌
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">post.posted</span>
+              
+
+              
+                
+              
+
+              <time title="post.createdsymbol.colon2018-07-19 00:00:00" itemprop="dateCreated datePublished" datetime="2018-07-19T00:00:00+08:00">2018-07-19</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="leetcode-870-优势洗牌"><a href="#leetcode-870-优势洗牌" class="headerlink" title="leetcode 870 - 优势洗牌"></a>leetcode 870 - 优势洗牌</h1><p>给定两个大小相等的数组 <code>A</code> 和 <code>B</code>，A 相对于 B 的<em>优势</em>可以用满足 <code>A[i] &gt; B[i]</code> 的索引 <code>i</code> 的数目来描述。</p>
+<p>返回 <code>A</code> 的<strong>任意</strong>排列，使其相对于 <code>B</code> 的优势最大化。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：A = [2,7,11,15], B = [1,10,4,11]</span><br><span class="line">输出：[2,11,7,15]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：A = [12,24,8,32], B = [13,25,32,11]</span><br><span class="line">输出：[24,32,8,12]</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ol>
+<li><code>1 &lt;= A.length = B.length &lt;= 10000</code></li>
+<li><code>0 &lt;= A[i] &lt;= 10^9</code></li>
+<li><code>0 &lt;= B[i] &lt;= 10^9</code></li>
+</ol>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>优势洗牌，不得不让我们想起 田忌赛马。其中的原理，我是这么理解的，既然A要打胜仗，可以</p>
+<ol>
+<li><p>先把A排序，得到一个升序的序； </p>
+</li>
+<li><p>遍历B 对B[i]进行操作：从A[0]开始遍历A找到第一个比B[i]大的A[j]之后将A[j]赋给res[i]以满足res[i]&gt;B[i]，找到A[j]之后即可立刻跳出A遍历循环；</p>
+</li>
+<li><p>给不满足A[i]&gt;B[i]的情况赋值：</p>
+<p>阶段2可确定 满足A[i]&gt;B[i]的那些元素的情况，但是 这还不够，我们需要将那些败局也赋上，即那些A[i]&lt;=B[i]的情况，那么我们总不能分不清A中哪些元素已被使用了吧？所以我们可以在执行2的时候对已经赋值了res[i]的下标进行记录：resIsSetted[i]=1（初始化的时候是0）,对已经使用了的A[j]的下标进行记录：AiIsAssigned[j]=1（初始化的时候是0）</p>
+<p>这个时候 我们再遍历一次 B 对哪些未做优势对比（resIsSetted[i]==0）的res[i]进行设置值：遍历A得到第一个未被分配（AiIsAssigned[j]==0）的A[j]赋值给res[i]，之后:resIsSetted[i]=1;AiIsAssigned[j]=1; 之后立刻跳出A遍历循环</p>
+</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.study;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>: jerx</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: Created in 16:12 2018/7/19</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Modified</span> By:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdvantageCount</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] advantageCount(<span class="keyword">int</span>[] A, <span class="keyword">int</span>[] B) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] AiIsAssigned = <span class="keyword">new</span> <span class="keyword">int</span>[A.length];</span><br><span class="line">        <span class="keyword">int</span>[] resIsSetted = <span class="keyword">new</span> <span class="keyword">int</span>[A.length];</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[A.length];</span><br><span class="line">        Arrays.sort(A);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; B.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; A.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (A[j] &gt; B[i] &amp;&amp; AiIsAssigned[j] == <span class="number">0</span> &amp;&amp; resIsSetted[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="comment">// a[j]为第一个比B[i]大的且未被分配，置于res[i]</span></span><br><span class="line">                    res[i] = A[j];</span><br><span class="line">                    AiIsAssigned[j] = <span class="number">1</span>;</span><br><span class="line">                    resIsSetted[i] = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;B.length;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (resIsSetted[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; A.length; k++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (AiIsAssigned[k]==<span class="number">0</span>)&#123;</span><br><span class="line">                        res[i] = A[k];</span><br><span class="line">                        AiIsAssigned[k] = <span class="number">1</span>;</span><br><span class="line">                        resIsSetted[i] = <span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 测试</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(Arrays.toString(advantageCount(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">2</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>&#125;, <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>&#125;)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/动态代理/动态代理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1470,7 +1628,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">state.posts</span>
                   </a>
                 </div>
