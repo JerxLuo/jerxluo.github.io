@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Jerx Luo 的博客">
 <meta property="og:description" content="6大设计原则单一职责原则 :SRP定义单一职责 指的是：应该有且仅有一个原因引起类的变更 典例  RBAC通过分配和取消角色来实现用户权限的授予和取消，使动作主体（用户）和资源的行为（权限）分离  举个例子： 12345public interface IPhone &amp;#123;    public void dial(String phoneNumber);  	public void chat">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-10T01:40:31.908Z">
+<meta property="og:updated_time" content="2018-07-10T14:22:15.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式之6大设计原则">
 <meta name="twitter:description" content="6大设计原则单一职责原则 :SRP定义单一职责 指的是：应该有且仅有一个原因引起类的变更 典例  RBAC通过分配和取消角色来实现用户权限的授予和取消，使动作主体（用户）和资源的行为（权限）分离  举个例子： 12345public interface IPhone &amp;#123;    public void dial(String phoneNumber);  	public void chat">
@@ -327,7 +327,7 @@
                 
               
 
-              <time title="post.createdsymbol.colon2018-07-10 00:00:00 / post.modifiedsymbol.colon09:40:31" itemprop="dateCreated datePublished" datetime="2018-07-10T00:00:00+08:00">2018-07-10</time>
+              <time title="post.createdsymbol.colon2018-07-10 00:00:00 / post.modifiedsymbol.colon22:22:15" itemprop="dateCreated datePublished" datetime="2018-07-10T00:00:00+08:00">2018-07-10</time>
             
 
             
@@ -446,15 +446,15 @@
 <h2 id="重要什么是依赖倒置"><a href="#重要什么是依赖倒置" class="headerlink" title="重要什么是依赖倒置"></a><code>重要</code>什么是依赖倒置</h2><p>想知道什么是依赖倒置，应该先了解一下依赖正置是什么。</p>
 <p>依赖正置说白了就是类间的依赖是实实在在的实现类间的依赖，这是面向实现编程</p>
 <p>而编写程序需要抽象事物，抽象的结果是产生接口类和抽象类，而倒置则是指我们根据系统的设计而产生的抽象间的依赖，以代替人们传统思维中的事物间的依赖。</p>
-<h1 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>建立单一接口，不要建立臃肿庞大的接口。</p>
+<h1 id="接口隔离原则（高内聚）"><a href="#接口隔离原则（高内聚）" class="headerlink" title="接口隔离原则（高内聚）"></a>接口隔离原则（高内聚）</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>建立单一接口，不要建立臃肿庞大的接口。</p>
 <h2 id="区别于单一职责原则"><a href="#区别于单一职责原则" class="headerlink" title="区别于单一职责原则"></a>区别于单一职责原则</h2><p>接口隔离原则与单一职责的审视角度是不相同的，</p>
 <p>单一职责要求的是类和接口职责单一，注重的是职责，这是业务逻辑上的划分，</p>
 <p>而接口隔离原则要求接口的方法尽量少</p>
 <h2 id="保证接口的纯洁性"><a href="#保证接口的纯洁性" class="headerlink" title="保证接口的纯洁性"></a>保证接口的纯洁性</h2><ol>
 <li><h3 id="尽量小"><a href="#尽量小" class="headerlink" title="尽量小"></a>尽量小</h3><p>尽量小，但是当根据接口单一原则要拆分接口时，必须先满足单一职责原则</p>
 </li>
-<li><h3 id="高内聚"><a href="#高内聚" class="headerlink" title="高内聚"></a>高内聚</h3><p>不讲任何条件、立刻完成任务的行为就是高内聚的表现</p>
-<p>高内聚要求在接口中尽量少公布public方法</p>
+<li><h3 id="高内聚"><a href="#高内聚" class="headerlink" title="高内聚"></a>高内聚</h3><p>不讲任何条件、立刻完成任务的行为就是高内聚的表现，高内聚就是提高接口、类、模块的处理能力，减少对外的交互。</p>
+<p><em>高内聚要求在接口中尽量少公布public方法</em></p>
 </li>
 <li><h3 id="定制服务"><a href="#定制服务" class="headerlink" title="定制服务"></a>定制服务</h3><p>​</p>
 </li>
@@ -465,16 +465,34 @@
 <li>通过业务逻辑压缩接口中的public方法</li>
 <li>已经被污染了的接口，尽量去修改，若变更的风险较大，则采用适配器模式进行转化<br>处理；</li>
 </ul>
-<h1 id="迪米特原则-LKP"><a href="#迪米特原则-LKP" class="headerlink" title="迪米特原则:LKP"></a>迪米特原则:LKP</h1><p>一个对象应该对其他对象有最少的了解。</p>
+<h1 id="迪米特原则-LKP（低耦合）"><a href="#迪米特原则-LKP（低耦合）" class="headerlink" title="迪米特原则:LKP（低耦合）"></a>迪米特原则:LKP（低耦合）</h1><p>一个对象应该对其他对象有最少的了解。</p>
 <h2 id="4层含义"><a href="#4层含义" class="headerlink" title="4层含义"></a>4层含义</h2><h3 id="1-只和朋友交流"><a href="#1-只和朋友交流" class="headerlink" title="1. 只和朋友交流"></a>1. 只和朋友交流</h3><p>出现在成员变量、方法的输入输出参数中的类称为成员朋友类；</p>
 <p>而出现在方法体内部的类不属于朋友类</p>
+<p>这一层含义希望的是，类应该只跟成员变量、方法的输入输出参数中的类交流，所谓交流又是什么意思呢？</p>
 <h3 id="2-朋友间也是有距离的"><a href="#2-朋友间也是有距离的" class="headerlink" title="2. 朋友间也是有距离的"></a>2. 朋友间也是有距离的</h3><p>尽量不要对外公布太多的public方法和非静态的public变量，尽量内敛，多使用private、package-private、protected等访问权限。</p>
+<p>这一层的含义希望的是，类尽量不要堆外公布太多public方法，尽量内敛。</p>
 <h3 id="3-是自己的就是自己的"><a href="#3-是自己的就是自己的" class="headerlink" title="3. 是自己的就是自己的"></a>3. 是自己的就是自己的</h3><p>经常出现的情况：放在本类中也可以，放在其他类中也没有错，<br>那怎么去衡量呢？你可以坚持这样一个原则：如果一个方法放在本类中，既不增加类间关<br>系，也对本类不产生负面影响，那就放置在本类中。</p>
-<h2 id="实践要点-1"><a href="#实践要点-1" class="headerlink" title="实践要点"></a>实践要点</h2><p>类间解耦，弱耦合，</p>
-<hr>
-<p>未完待续。。。。</p>
+<p>这一层的含义希望的是：属于类自身的东西没必要独立出来，当一个方法放在本类中既不增加类间关系又不对本类产生负面影响，则该方法就应该属于该类，该方法放置于本类中是合理的。</p>
+<h3 id="4-谨慎使用Serializable"><a href="#4-谨慎使用Serializable" class="headerlink" title="4. 谨慎使用Serializable"></a>4. 谨慎使用Serializable</h3><p>这一层的含义希望的是：每一个类都应该谨慎使用Serializable</p>
+<h2 id="实践要点-1"><a href="#实践要点-1" class="headerlink" title="实践要点"></a>实践要点</h2><p>类间解耦，弱耦合</p>
 <h1 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h1><p>一个软件实体如类、模块和函数应该对扩展开放，对修改关闭。</p>
-<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><h2 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h2><h2 id="怎么实现"><a href="#怎么实现" class="headerlink" title="怎么实现"></a>怎么实现</h2>
+<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>由定义可知开闭原则就是 一个软件实体应该对扩展开放，对修改关闭。那么什么是软件实体呢，软件实体包括项目中按一定逻辑规则划分的模块、抽象和类、方法。这些对象对扩展开放的意思是允许扩展，而尽量不要做覆盖性的修改，什么算覆盖性的修改呢，做个假设，本来你有个实现类实现了对书籍价格的获取，而后需求改变需要对书籍打折后的价格的获取，那么若对之前的获取价格的方法修改实现，改为获取打折后的价格，将原本约定好的接口意义做了修改，使得之前的意义下的该接口无法使用，这就相当于覆盖性的修改。当然了，覆盖性这个是我自己提出的说法，只是为了帮助理解。</p>
+<p>注意：<strong>开闭原则表示软件实体对扩展开放，对修改关闭，并不意味着不做任何修改，低层模块的变</strong><br><strong>更，必然要有高层模块进行耦合，否则就是一个孤立无意义的代码片段。</strong></p>
+<h2 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h2><p>其实想知道为什么要这么做，也就是得要明白这么做的好处/重要性了。关于开闭原则，可以通过以下几个反面去了解他的重要性：</p>
+<h3 id="1-对测试：只需测试新增的类及其方法，不需要重复测试之前的方法"><a href="#1-对测试：只需测试新增的类及其方法，不需要重复测试之前的方法" class="headerlink" title="1.对测试：只需测试新增的类及其方法，不需要重复测试之前的方法"></a>1.对测试：只需测试新增的类及其方法，不需要重复测试之前的方法</h3><p>单元测试是对类的测试，如果不遵守开闭原则而去修改一个方法/多个方法代码来完成变化，那么该类的测试方法无疑需要重构，这当然非常浪费人力，而遵守开闭原则则只需对扩展的类及其方法添加新的测试方法即可，不需要重构之前的测试方法。</p>
+<h3 id="2-开闭原则可以提高复用性"><a href="#2-开闭原则可以提高复用性" class="headerlink" title="2. 开闭原则可以提高复用性"></a>2. 开闭原则可以提高复用性</h3><p>避免相同逻辑散落在不同方法中，逻辑粒度越小，复用率越高</p>
+<h3 id="3-开闭原则可以提高可维护性"><a href="#3-开闭原则可以提高可维护性" class="headerlink" title="3. 开闭原则可以提高可维护性"></a>3. 开闭原则可以提高可维护性</h3><h3 id="4-面向对象开发的要求"><a href="#4-面向对象开发的要求" class="headerlink" title="4. 面向对象开发的要求"></a>4. 面向对象开发的要求</h3><h2 id="怎么实现"><a href="#怎么实现" class="headerlink" title="怎么实现"></a>怎么实现</h2><h3 id="1-抽象约束"><a href="#1-抽象约束" class="headerlink" title="1.抽象约束"></a>1.抽象约束</h3><p>第一，通过接口或抽象类约束扩展，对扩展进行边界限定，不允许出现在接口或抽象类中不存在的public方法；</p>
+<p>第二，参数类型、引用对象尽量使用接口或者抽象类，而不是实现类；</p>
+<p>第三，抽象层尽量保持稳定，一旦确定即不允许修改。</p>
+<h3 id="2-元数据（metadata）控制模块行为"><a href="#2-元数据（metadata）控制模块行为" class="headerlink" title="2.元数据（metadata）控制模块行为"></a>2.元数据（metadata）控制模块行为</h3><p>什么是元数据？</p>
+<p>元数据用于描述环境和数据的数据，就是配置参数，可以从文件中/数据库中获得。</p>
+<p>达到极致的控制反转，使用最多的是Spring容器</p>
+<h3 id="3-制定项目章程"><a href="#3-制定项目章程" class="headerlink" title="3. 制定项目章程"></a>3. 制定项目章程</h3><p>项目章程指定了所有人员都必须遵守的约定，对于项目来说，约定优于配置。我们可以通过制定项目的约定规则来实现开闭原则</p>
+<h3 id="4-封装变化"><a href="#4-封装变化" class="headerlink" title="4. 封装变化"></a>4. 封装变化</h3><p>第一，将相同的变化封装到一个接口或抽象类中；</p>
+<p>第二，将不同的变化封装到不同的接口或抽象类中，不应该有两个不同的变化出现在同一个接口或<br>抽象类中</p>
+<h2 id="实践要点-2"><a href="#实践要点-2" class="headerlink" title="实践要点"></a>实践要点</h2><p>类必须做到高内聚低耦合，否则类文件的替换会引起不可预料的故障；项目约定规章比较重要的，应该约定好合适的章程；应该提前预测变化，设计架构的同时应该要考虑适应可能发生的变化。</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>说白了<strong>单一职责原则要求类根据单一的职责划分</strong>，但是职责的细化根据项目、环境而异，他告诉我一个类如何划分定义出来；<strong>接口隔离原则要求类的定义尽量高内聚</strong>，所谓高内聚，；而<strong>迪米特原则，要求类之间的关系尽量地低耦合</strong>，所谓低耦合，即要求类只与成员变量、方法输入输出参数交流，同时类对外公布的public方法应该尽量地少；</p>
+
       
     </div>
 
@@ -516,6 +534,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/16/动态代理/动态代理/" rel="prev" title="动态代理">
+                动态代理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -589,7 +611,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">state.posts</span>
                   </a>
                 </div>
@@ -610,7 +632,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">state.tags</span>
                   </a>
                 </div>
@@ -646,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6大设计原则"><span class="nav-number">1.</span> <span class="nav-text">6大设计原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单一职责原则-SRP"><span class="nav-number">2.</span> <span class="nav-text">单一职责原则 :SRP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#典例"><span class="nav-number">2.2.</span> <span class="nav-text">典例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要难处："><span class="nav-number">2.3.</span> <span class="nav-text">重要难处：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏替换原则-LSP"><span class="nav-number">3.</span> <span class="nav-text">里氏替换原则:LSP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">3.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4层含义："><span class="nav-number">3.2.</span> <span class="nav-text">4层含义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要实践要点"><span class="nav-number">3.3.</span> <span class="nav-text">重要实践要点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖倒置原则-DIP"><span class="nav-number">4.</span> <span class="nav-text">依赖倒置原则:DIP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#三层含义："><span class="nav-number">4.1.</span> <span class="nav-text">三层含义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在java语言中的表现："><span class="nav-number">4.2.</span> <span class="nav-text">在java语言中的表现：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖的三种写法："><span class="nav-number">4.3.</span> <span class="nav-text">依赖的三种写法：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-构造函数传递依赖对象"><span class="nav-number">4.3.1.</span> <span class="nav-text">1.构造函数传递依赖对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Setter方法传递依赖对象"><span class="nav-number">4.3.2.</span> <span class="nav-text">2.Setter方法传递依赖对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-接口声明依赖对象"><span class="nav-number">4.3.3.</span> <span class="nav-text">3.接口声明依赖对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要实践要点-1"><span class="nav-number">4.4.</span> <span class="nav-text">重要实践要点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要什么是依赖倒置"><span class="nav-number">4.5.</span> <span class="nav-text">重要什么是依赖倒置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">5.</span> <span class="nav-text">接口隔离原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义-1"><span class="nav-number">5.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区别于单一职责原则"><span class="nav-number">5.2.</span> <span class="nav-text">区别于单一职责原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保证接口的纯洁性"><span class="nav-number">5.3.</span> <span class="nav-text">保证接口的纯洁性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#尽量小"><span class="nav-number">5.3.1.</span> <span class="nav-text">尽量小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高内聚"><span class="nav-number">5.3.2.</span> <span class="nav-text">高内聚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制服务"><span class="nav-number">5.3.3.</span> <span class="nav-text">定制服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有限度"><span class="nav-number">5.3.4.</span> <span class="nav-text">有限度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践要点"><span class="nav-number">5.4.</span> <span class="nav-text">实践要点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迪米特原则-LKP"><span class="nav-number">6.</span> <span class="nav-text">迪米特原则:LKP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4层含义"><span class="nav-number">6.1.</span> <span class="nav-text">4层含义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-只和朋友交流"><span class="nav-number">6.1.1.</span> <span class="nav-text">1. 只和朋友交流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-朋友间也是有距离的"><span class="nav-number">6.1.2.</span> <span class="nav-text">2. 朋友间也是有距离的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-是自己的就是自己的"><span class="nav-number">6.1.3.</span> <span class="nav-text">3. 是自己的就是自己的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践要点-1"><span class="nav-number">6.2.</span> <span class="nav-text">实践要点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开闭原则"><span class="nav-number">7.</span> <span class="nav-text">开闭原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么"><span class="nav-number">7.1.</span> <span class="nav-text">是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么"><span class="nav-number">7.2.</span> <span class="nav-text">为什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么实现"><span class="nav-number">7.3.</span> <span class="nav-text">怎么实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6大设计原则"><span class="nav-number">1.</span> <span class="nav-text">6大设计原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单一职责原则-SRP"><span class="nav-number">2.</span> <span class="nav-text">单一职责原则 :SRP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#典例"><span class="nav-number">2.2.</span> <span class="nav-text">典例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要难处："><span class="nav-number">2.3.</span> <span class="nav-text">重要难处：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏替换原则-LSP"><span class="nav-number">3.</span> <span class="nav-text">里氏替换原则:LSP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">3.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4层含义："><span class="nav-number">3.2.</span> <span class="nav-text">4层含义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要实践要点"><span class="nav-number">3.3.</span> <span class="nav-text">重要实践要点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖倒置原则-DIP"><span class="nav-number">4.</span> <span class="nav-text">依赖倒置原则:DIP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#三层含义："><span class="nav-number">4.1.</span> <span class="nav-text">三层含义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在java语言中的表现："><span class="nav-number">4.2.</span> <span class="nav-text">在java语言中的表现：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖的三种写法："><span class="nav-number">4.3.</span> <span class="nav-text">依赖的三种写法：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-构造函数传递依赖对象"><span class="nav-number">4.3.1.</span> <span class="nav-text">1.构造函数传递依赖对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Setter方法传递依赖对象"><span class="nav-number">4.3.2.</span> <span class="nav-text">2.Setter方法传递依赖对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-接口声明依赖对象"><span class="nav-number">4.3.3.</span> <span class="nav-text">3.接口声明依赖对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要实践要点-1"><span class="nav-number">4.4.</span> <span class="nav-text">重要实践要点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要什么是依赖倒置"><span class="nav-number">4.5.</span> <span class="nav-text">重要什么是依赖倒置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口隔离原则（高内聚）"><span class="nav-number">5.</span> <span class="nav-text">接口隔离原则（高内聚）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义-1"><span class="nav-number">5.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区别于单一职责原则"><span class="nav-number">5.2.</span> <span class="nav-text">区别于单一职责原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保证接口的纯洁性"><span class="nav-number">5.3.</span> <span class="nav-text">保证接口的纯洁性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#尽量小"><span class="nav-number">5.3.1.</span> <span class="nav-text">尽量小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高内聚"><span class="nav-number">5.3.2.</span> <span class="nav-text">高内聚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制服务"><span class="nav-number">5.3.3.</span> <span class="nav-text">定制服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有限度"><span class="nav-number">5.3.4.</span> <span class="nav-text">有限度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践要点"><span class="nav-number">5.4.</span> <span class="nav-text">实践要点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迪米特原则-LKP（低耦合）"><span class="nav-number">6.</span> <span class="nav-text">迪米特原则:LKP（低耦合）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4层含义"><span class="nav-number">6.1.</span> <span class="nav-text">4层含义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-只和朋友交流"><span class="nav-number">6.1.1.</span> <span class="nav-text">1. 只和朋友交流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-朋友间也是有距离的"><span class="nav-number">6.1.2.</span> <span class="nav-text">2. 朋友间也是有距离的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-是自己的就是自己的"><span class="nav-number">6.1.3.</span> <span class="nav-text">3. 是自己的就是自己的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-谨慎使用Serializable"><span class="nav-number">6.1.4.</span> <span class="nav-text">4. 谨慎使用Serializable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践要点-1"><span class="nav-number">6.2.</span> <span class="nav-text">实践要点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开闭原则"><span class="nav-number">7.</span> <span class="nav-text">开闭原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么"><span class="nav-number">7.1.</span> <span class="nav-text">是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么"><span class="nav-number">7.2.</span> <span class="nav-text">为什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-对测试：只需测试新增的类及其方法，不需要重复测试之前的方法"><span class="nav-number">7.2.1.</span> <span class="nav-text">1.对测试：只需测试新增的类及其方法，不需要重复测试之前的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-开闭原则可以提高复用性"><span class="nav-number">7.2.2.</span> <span class="nav-text">2. 开闭原则可以提高复用性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-开闭原则可以提高可维护性"><span class="nav-number">7.2.3.</span> <span class="nav-text">3. 开闭原则可以提高可维护性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-面向对象开发的要求"><span class="nav-number">7.2.4.</span> <span class="nav-text">4. 面向对象开发的要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么实现"><span class="nav-number">7.3.</span> <span class="nav-text">怎么实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-抽象约束"><span class="nav-number">7.3.1.</span> <span class="nav-text">1.抽象约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-元数据（metadata）控制模块行为"><span class="nav-number">7.3.2.</span> <span class="nav-text">2.元数据（metadata）控制模块行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-制定项目章程"><span class="nav-number">7.3.3.</span> <span class="nav-text">3. 制定项目章程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-封装变化"><span class="nav-number">7.3.4.</span> <span class="nav-text">4. 封装变化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践要点-2"><span class="nav-number">7.4.</span> <span class="nav-text">实践要点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结："><span class="nav-number">8.</span> <span class="nav-text">总结：</span></a></li></ol></div>
             
 
           </div>
