@@ -285,172 +285,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/leetcode/leetcode-869/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jerx Luo">
-      <meta itemprop="description" content="知识分享">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jerx Luo 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/19/leetcode/leetcode-869/" itemprop="url">
-                  leetcode 869 - 重新排序得到2的幂
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">post.posted</span>
-              
-
-              
-                
-              
-
-              <time title="post.createdsymbol.colon2018-07-19 00:00:00" itemprop="dateCreated datePublished" datetime="2018-07-19T00:00:00+08:00">2018-07-19</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="leetcode-869-重新排序得到-2-的幂"><a href="#leetcode-869-重新排序得到-2-的幂" class="headerlink" title="leetcode 869 - 重新排序得到 2 的幂"></a>leetcode 869 - 重新排序得到 2 的幂</h3><p>从正整数 <code>N</code> 开始，我们按任何顺序（包括原始顺序）将数字重新排序，注意其前导数字不能为零。</p>
-<p>如果我们可以通过上述方式得到 2 的幂，返回 <code>true</code>；否则，返回 <code>false</code>。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：1</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：10</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：16</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-<p><strong>示例 4：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：24</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
-<p><strong>示例 5：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：46</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-<p><strong>提示：</strong></p>
-<ol>
-<li><code>1 &lt;= N &lt;= 10^9</code></li>
-</ol>
-<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>这里有两个要求：全排列+如何判断一个数是2的幂</p>
-<h4 id="判断是2的幂"><a href="#判断是2的幂" class="headerlink" title="判断是2的幂"></a>判断是2的幂</h4><h5 id="1-计算1的个数"><a href="#1-计算1的个数" class="headerlink" title="1. 计算1的个数"></a>1. 计算1的个数</h5><p>若是2的幂，该数二进制格式下应该只有一个1，且题目提示1&lt;=N&lt;=10^9，所以N在二进制表示下，最大有30位</p>
-<p>因此：判断N在二进制表示下在30位以内是否只有一个1</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPowerOf2</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> is1 = N &amp; <span class="number">1</span>;</span><br><span class="line">        N = N &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (is1 == <span class="number">1</span>) &#123;</span><br><span class="line">            b++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="2-N和N-1按位与得0则为2的幂"><a href="#2-N和N-1按位与得0则为2的幂" class="headerlink" title="2. N和N-1按位与得0则为2的幂"></a>2. N和N-1按位与得0则为2的幂</h5><p>我们知道2的幂是只有一个1，那么当N-1之后，低位的0需要向高位借1，若出现在第n个高位为1时，借位停止，此时，N-1的第n位至第0位与N的刚好相反，而第n+1位到最高位在N是2的幂的情况下都为0，则N&amp;N-1得0，但是若不是2的幂，即n+1位到最高位中存在1那么N&amp;N-1不得0</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPowerOf2</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> N&amp;N-<span class="number">1</span>==<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="3-重要-通用于：m的最大次幂Mod-N得0则N为m的幂"><a href="#3-重要-通用于：m的最大次幂Mod-N得0则N为m的幂" class="headerlink" title="3.重要 通用于：m的最大次幂Mod N得0则N为m的幂"></a>3.<code>重要</code> 通用于：m的最大次幂Mod N得0则N为m的幂</h5><p>2的最大次幂Mod N 得0则N为2的幂</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPowerOf2</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> N&gt;<span class="number">0</span>?<span class="number">1073741824</span>%N==<span class="number">0</span>:<span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h4><p>递归实现全排列：</p>
-<p>设R(A1,A2,A3,…,An)表示为A1,A2,…,A3的全排列，相当于要得到A1,R(A2,A3,…,An)、A2,R(A1,A3,…,An)、…、An,R(A1,A2,…An-1)，我们要相当于第index(此时为0)个元素与第index+i(i∈[0,n-index-1])位元素的情况下,index+1到n-1全排列情况</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">permutation</span><span class="params">(<span class="keyword">int</span>[] values, <span class="keyword">int</span> index, <span class="keyword">int</span> num,List&lt;Integer&gt; result)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">if</span> (num == <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="comment">//递归边界：当排列长度为0</span></span><br><span class="line">        	<span class="keyword">int</span> p = <span class="number">1</span>;</span><br><span class="line">        	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        	<span class="keyword">for</span> (<span class="keyword">int</span> f = <span class="number">0</span>; f &lt; values.length; f++)</span><br><span class="line">        	&#123;</span><br><span class="line">            	sum += values[f]*p;</span><br><span class="line">            	p = p*<span class="number">10</span>;</span><br><span class="line">        	&#125;</span><br><span class="line">        	<span class="keyword">if</span> (sum&gt;=p/<span class="number">10</span>) &#123;</span><br><span class="line">              <span class="comment">//去除前导数字为0的数字</span></span><br><span class="line">            	result.add(sum);</span><br><span class="line">        	&#125;</span><br><span class="line">        	<span class="keyword">return</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">      <span class="comment">// 递归逻辑： 1.交换第index和第index+i个数字</span></span><br><span class="line">      <span class="comment">// index是获取部分排列之外的最大个元素的位置：即A1,A2,R(A3,...,An)的index为1</span></span><br><span class="line">      <span class="comment">// 2. 获取第index不变，index+1改变的全排列:（eg:index为1）A1,A2,Ax,(A3,...,An)</span></span><br><span class="line">      <span class="comment">// 3. 交换第index和第index+i个数字</span></span><br><span class="line">    	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">        	swap(values, index + i, index);</span><br><span class="line">        	permutation(values, index + <span class="number">1</span>, num - <span class="number">1</span>,result);</span><br><span class="line">        	swap(values, index, index + i);</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] values, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> tmp = values[i];</span><br><span class="line">    	values[i] = values[j];</span><br><span class="line">    	values[j] = tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">reorderedPowerOf2</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">while</span> (N != <span class="number">0</span>) &#123;</span><br><span class="line">        list.add(N % <span class="number">10</span>);</span><br><span class="line">        N = N / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (Integer i : list) &#123;</span><br><span class="line">        a[j++] = i;</span><br><span class="line">    &#125;</span><br><span class="line">   List&lt;Integer&gt; result = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    permutation(a, <span class="number">0</span>, a.length, a.length,result);</span><br><span class="line">    <span class="keyword">for</span> (Integer i:result)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">1</span>||(i&amp;(i-<span class="number">1</span>))==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>换个角度想还有另一种思路。我们前面想的是获取全排列，然后逐个判断是不是2的幂；反过来，我们可以获取是2的幂的所有数，然后来判断N的数字是否能拼接成这些数的。这一个要求两个点：1)获取2的幂的所有数/获取N的位数的数m，然后获取m位的2的幂的所有数. 2)如何拼接匹配</p>
-<p>这个思路的话，比较主要的是第二个点，如何拼接匹配，应该将数字转换为存储在一个容器内，之后遍历1)获得的所有的数做：从容器中获取数字以匹配2的幂的数Tm ，若最后完全匹配，且容器内的元素全部用完(当第一点中获取的N经过位数判断则这两个条件前者满足后者一定也满足)</p>
-<p>这个思路的过程稍微复杂，一气呵成地写下来应该需要花点时间，我之后有时间再写一下实现，感受一下emmm</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/leetcode/leetcode-870/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -759,6 +593,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/leetcode/leetcode-869/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jerx Luo">
+      <meta itemprop="description" content="知识分享">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerx Luo 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/19/leetcode/leetcode-869/" itemprop="url">
+                  leetcode 869 - 重新排序得到2的幂
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">post.posted</span>
+              
+
+              
+                
+              
+
+              <time title="post.createdsymbol.colon2018-07-19 00:00:00" itemprop="dateCreated datePublished" datetime="2018-07-19T00:00:00+08:00">2018-07-19</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="leetcode-869-重新排序得到-2-的幂"><a href="#leetcode-869-重新排序得到-2-的幂" class="headerlink" title="leetcode 869 - 重新排序得到 2 的幂"></a>leetcode 869 - 重新排序得到 2 的幂</h3><p>从正整数 <code>N</code> 开始，我们按任何顺序（包括原始顺序）将数字重新排序，注意其前导数字不能为零。</p>
+<p>如果我们可以通过上述方式得到 2 的幂，返回 <code>true</code>；否则，返回 <code>false</code>。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：1</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：10</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：16</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：24</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+<p><strong>示例 5：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：46</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ol>
+<li><code>1 &lt;= N &lt;= 10^9</code></li>
+</ol>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>这里有两个要求：全排列+如何判断一个数是2的幂</p>
+<h4 id="判断是2的幂"><a href="#判断是2的幂" class="headerlink" title="判断是2的幂"></a>判断是2的幂</h4><h5 id="1-计算1的个数"><a href="#1-计算1的个数" class="headerlink" title="1. 计算1的个数"></a>1. 计算1的个数</h5><p>若是2的幂，该数二进制格式下应该只有一个1，且题目提示1&lt;=N&lt;=10^9，所以N在二进制表示下，最大有30位</p>
+<p>因此：判断N在二进制表示下在30位以内是否只有一个1</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPowerOf2</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> is1 = N &amp; <span class="number">1</span>;</span><br><span class="line">        N = N &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (is1 == <span class="number">1</span>) &#123;</span><br><span class="line">            b++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-N和N-1按位与得0则为2的幂"><a href="#2-N和N-1按位与得0则为2的幂" class="headerlink" title="2. N和N-1按位与得0则为2的幂"></a>2. N和N-1按位与得0则为2的幂</h5><p>我们知道2的幂是只有一个1，那么当N-1之后，低位的0需要向高位借1，若出现在第n个高位为1时，借位停止，此时，N-1的第n位至第0位与N的刚好相反，而第n+1位到最高位在N是2的幂的情况下都为0，则N&amp;N-1得0，但是若不是2的幂，即n+1位到最高位中存在1那么N&amp;N-1不得0</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPowerOf2</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> N&amp;N-<span class="number">1</span>==<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-重要-通用于：m的最大次幂Mod-N得0则N为m的幂"><a href="#3-重要-通用于：m的最大次幂Mod-N得0则N为m的幂" class="headerlink" title="3.重要 通用于：m的最大次幂Mod N得0则N为m的幂"></a>3.<code>重要</code> 通用于：m的最大次幂Mod N得0则N为m的幂</h5><p>2的最大次幂Mod N 得0则N为2的幂</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPowerOf2</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> N&gt;<span class="number">0</span>?<span class="number">1073741824</span>%N==<span class="number">0</span>:<span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h4><p>递归实现全排列：</p>
+<p>设R(A1,A2,A3,…,An)表示为A1,A2,…,A3的全排列，相当于要得到A1,R(A2,A3,…,An)、A2,R(A1,A3,…,An)、…、An,R(A1,A2,…An-1)，我们要相当于第index(此时为0)个元素与第index+i(i∈[0,n-index-1])位元素的情况下,index+1到n-1全排列情况</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">permutation</span><span class="params">(<span class="keyword">int</span>[] values, <span class="keyword">int</span> index, <span class="keyword">int</span> num,List&lt;Integer&gt; result)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">if</span> (num == <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="comment">//递归边界：当排列长度为0</span></span><br><span class="line">        	<span class="keyword">int</span> p = <span class="number">1</span>;</span><br><span class="line">        	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        	<span class="keyword">for</span> (<span class="keyword">int</span> f = <span class="number">0</span>; f &lt; values.length; f++)</span><br><span class="line">        	&#123;</span><br><span class="line">            	sum += values[f]*p;</span><br><span class="line">            	p = p*<span class="number">10</span>;</span><br><span class="line">        	&#125;</span><br><span class="line">        	<span class="keyword">if</span> (sum&gt;=p/<span class="number">10</span>) &#123;</span><br><span class="line">              <span class="comment">//去除前导数字为0的数字</span></span><br><span class="line">            	result.add(sum);</span><br><span class="line">        	&#125;</span><br><span class="line">        	<span class="keyword">return</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">      <span class="comment">// 递归逻辑： 1.交换第index和第index+i个数字</span></span><br><span class="line">      <span class="comment">// index是获取部分排列之外的最大个元素的位置：即A1,A2,R(A3,...,An)的index为1</span></span><br><span class="line">      <span class="comment">// 2. 获取第index不变，index+1改变的全排列:（eg:index为1）A1,A2,Ax,(A3,...,An)</span></span><br><span class="line">      <span class="comment">// 3. 交换第index和第index+i个数字</span></span><br><span class="line">    	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">        	swap(values, index + i, index);</span><br><span class="line">        	permutation(values, index + <span class="number">1</span>, num - <span class="number">1</span>,result);</span><br><span class="line">        	swap(values, index, index + i);</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] values, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> tmp = values[i];</span><br><span class="line">    	values[i] = values[j];</span><br><span class="line">    	values[j] = tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">reorderedPowerOf2</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">while</span> (N != <span class="number">0</span>) &#123;</span><br><span class="line">        list.add(N % <span class="number">10</span>);</span><br><span class="line">        N = N / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (Integer i : list) &#123;</span><br><span class="line">        a[j++] = i;</span><br><span class="line">    &#125;</span><br><span class="line">   List&lt;Integer&gt; result = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    permutation(a, <span class="number">0</span>, a.length, a.length,result);</span><br><span class="line">    <span class="keyword">for</span> (Integer i:result)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">1</span>||(i&amp;(i-<span class="number">1</span>))==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>换个角度想还有另一种思路。我们前面想的是获取全排列，然后逐个判断是不是2的幂；反过来，我们可以获取是2的幂的所有数，然后来判断N的数字是否能拼接成这些数的。这一个要求两个点：1)获取2的幂的所有数/获取N的位数的数m，然后获取m位的2的幂的所有数. 2)如何拼接匹配</p>
+<p>这个思路的话，比较主要的是第二个点，如何拼接匹配，应该将数字转换为存储在一个容器内，之后遍历1)获得的所有的数做：从容器中获取数字以匹配2的幂的数Tm ，若最后完全匹配，且容器内的元素全部用完(当第一点中获取的N经过位数判断则这两个条件前者满足后者一定也满足)</p>
+<p>这个思路的过程稍微复杂，一气呵成地写下来应该需要花点时间，我之后有时间再写一下实现，感受一下emmm</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/动态代理/动态代理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -841,7 +841,7 @@
       
         
           
-            <h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><h1 id="1-代理是什么"><a href="#1-代理是什么" class="headerlink" title="1. 代理是什么"></a>1. 代理是什么</h1><p>代理者 受委托者 的委托 而向外提供接口</p>
+            <h1 id="1-代理是什么"><a href="#1-代理是什么" class="headerlink" title="1. 代理是什么"></a>1. 代理是什么</h1><p>代理者 受委托者 的委托 而向外提供接口</p>
 <p>优点：</p>
 <ul>
 <li>隐藏委托者的实现</li>
